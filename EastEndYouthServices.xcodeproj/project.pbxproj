@@ -16,7 +16,6 @@
 		0C4C5FC21D65EFAF0091F400 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FC01D65EFAF0091F400 /* ServiceDetailViewController.swift */; };
 		0C4C5FC31D65EFAF0091F400 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */; };
 		0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2131D65F90800AAE6BD /* Main.storyboard */; };
-		0C78C2161D66066C00AAE6BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2151D66066C00AAE6BD /* Info.plist */; };
 		0C78C2181D66386800AAE6BD /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2171D66386800AAE6BD /* ArcGIS.bundle */; };
 /* End PBXBuildFile section */
 
@@ -162,7 +161,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C78C2161D66066C00AAE6BD /* Info.plist in Resources */,
 				0C4C5FAE1D65ED530091F400 /* LaunchScreen.storyboard in Resources */,
 				0C4C5FAB1D65ED530091F400 /* Assets.xcassets in Resources */,
 				0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */,
