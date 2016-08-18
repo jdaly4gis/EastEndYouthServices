@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<helpcfg date="2010-08-05">
+<product 
+id="en_US_Reader_10.0" 
+label="Adobe Reader X"
+ionId="adobereader_product_adobelr"
+baseUrl="http://help.adobe.com/" 
+path="HelpCfg/en_US/"
+/> 
+<package 
+id="en_US_Reader_10.0_Using" 
+
+path="en_US/reader/X/using" 
+contextSensitivity="yes" 
+/>
+</helpcfg>

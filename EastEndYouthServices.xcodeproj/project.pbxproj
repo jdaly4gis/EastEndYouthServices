@@ -8,20 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		0C4C5FA41D65ED530091F400 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FA31D65ED530091F400 /* AppDelegate.swift */; };
-		0C4C5FA61D65ED530091F400 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FA51D65ED530091F400 /* ViewController.swift */; };
-		0C4C5FA91D65ED530091F400 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4C5FA71D65ED530091F400 /* Main.storyboard */; };
 		0C4C5FAB1D65ED530091F400 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4C5FAA1D65ED530091F400 /* Assets.xcassets */; };
 		0C4C5FAE1D65ED530091F400 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C4C5FAC1D65ED530091F400 /* LaunchScreen.storyboard */; };
+		0C4C5FB61D65EDF30091F400 /* FacilitiesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FB51D65EDF30091F400 /* FacilitiesAPI.swift */; };
+		0C4C5FB81D65EE1F0091F400 /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FB71D65EE1F0091F400 /* Facility.swift */; };
+		0C4C5FBF1D65EF770091F400 /* FacilityStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FBE1D65EF770091F400 /* FacilityStore.swift */; };
+		0C4C5FC21D65EFAF0091F400 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FC01D65EFAF0091F400 /* ServiceDetailViewController.swift */; };
+		0C4C5FC31D65EFAF0091F400 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */; };
+		0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2131D65F90800AAE6BD /* Main.storyboard */; };
+		0C78C2161D66066C00AAE6BD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2151D66066C00AAE6BD /* Info.plist */; };
+		0C78C2181D66386800AAE6BD /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2171D66386800AAE6BD /* ArcGIS.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C4C5FA01D65ED530091F400 /* EastEndYouthServices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EastEndYouthServices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4C5FA31D65ED530091F400 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0C4C5FA51D65ED530091F400 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0C4C5FA81D65ED530091F400 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C4C5FAA1D65ED530091F400 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C4C5FAD1D65ED530091F400 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0C4C5FAF1D65ED530091F400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C4C5FB51D65EDF30091F400 /* FacilitiesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilitiesAPI.swift; sourceTree = "<group>"; };
+		0C4C5FB71D65EE1F0091F400 /* Facility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
+		0C4C5FBE1D65EF770091F400 /* FacilityStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilityStore.swift; sourceTree = "<group>"; };
+		0C4C5FC01D65EFAF0091F400 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
+		0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
+		0C78C2131D65F90800AAE6BD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0C78C2151D66066C00AAE6BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C78C2171D66386800AAE6BD /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +49,7 @@
 		0C4C5F971D65ED530091F400 = {
 			isa = PBXGroup;
 			children = (
+				0C78C2171D66386800AAE6BD /* ArcGIS.bundle */,
 				0C4C5FA21D65ED530091F400 /* EastEndYouthServices */,
 				0C4C5FA11D65ED530091F400 /* Products */,
 			);
@@ -55,13 +67,41 @@
 			isa = PBXGroup;
 			children = (
 				0C4C5FA31D65ED530091F400 /* AppDelegate.swift */,
-				0C4C5FA51D65ED530091F400 /* ViewController.swift */,
-				0C4C5FA71D65ED530091F400 /* Main.storyboard */,
 				0C4C5FAA1D65ED530091F400 /* Assets.xcassets */,
+				0C4C5FBB1D65EE7B0091F400 /* Controllers */,
+				0C4C5FB51D65EDF30091F400 /* FacilitiesAPI.swift */,
+				0C4C5FB71D65EE1F0091F400 /* Facility.swift */,
+				0C4C5FBE1D65EF770091F400 /* FacilityStore.swift */,
 				0C4C5FAC1D65ED530091F400 /* LaunchScreen.storyboard */,
-				0C4C5FAF1D65ED530091F400 /* Info.plist */,
+				0C78C2151D66066C00AAE6BD /* Info.plist */,
+				0C4C5FB91D65EE6C0091F400 /* Models */,
+				0C4C5FBA1D65EE740091F400 /* Views */,
 			);
 			path = EastEndYouthServices;
+			sourceTree = "<group>";
+		};
+		0C4C5FB91D65EE6C0091F400 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		0C4C5FBA1D65EE740091F400 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0C78C2131D65F90800AAE6BD /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		0C4C5FBB1D65EE7B0091F400 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */,
+				0C4C5FC01D65EFAF0091F400 /* ServiceDetailViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +162,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C78C2161D66066C00AAE6BD /* Info.plist in Resources */,
 				0C4C5FAE1D65ED530091F400 /* LaunchScreen.storyboard in Resources */,
 				0C4C5FAB1D65ED530091F400 /* Assets.xcassets in Resources */,
-				0C4C5FA91D65ED530091F400 /* Main.storyboard in Resources */,
+				0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */,
+				0C78C2181D66386800AAE6BD /* ArcGIS.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +177,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C4C5FA61D65ED530091F400 /* ViewController.swift in Sources */,
+				0C4C5FB61D65EDF30091F400 /* FacilitiesAPI.swift in Sources */,
+				0C4C5FB81D65EE1F0091F400 /* Facility.swift in Sources */,
+				0C4C5FBF1D65EF770091F400 /* FacilityStore.swift in Sources */,
 				0C4C5FA41D65ED530091F400 /* AppDelegate.swift in Sources */,
+				0C4C5FC31D65EFAF0091F400 /* ServiceListViewController.swift in Sources */,
+				0C4C5FC21D65EFAF0091F400 /* ServiceDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0C4C5FA71D65ED530091F400 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0C4C5FA81D65ED530091F400 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0C4C5FAC1D65ED530091F400 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -251,8 +289,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/SDKs/ArcGIS/iOS/";
 				INFOPLIST_FILE = EastEndYouthServices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					ArcGIS,
+					"-l",
+					"c++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = gov.southamptontownny.EastEndYouthServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -262,8 +309,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(HOME)/Library/SDKs/ArcGIS/iOS/";
 				INFOPLIST_FILE = EastEndYouthServices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					ArcGIS,
+					"-l",
+					"c++",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = gov.southamptontownny.EastEndYouthServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -288,6 +344,7 @@
 				0C4C5FB41D65ED530091F400 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

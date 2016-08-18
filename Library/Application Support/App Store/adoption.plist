@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.garageband</key>
+	<dict>
+		<key>apple-id</key>
+		<string>techsupport@southamptontownny.gov</string>
+		<key>dsid</key>
+		<integer>659460603</integer>
+	</dict>
+	<key>com.apple.iMovieApp</key>
+	<dict>
+		<key>apple-id</key>
+		<string>techsupport@southamptontownny.gov</string>
+		<key>dsid</key>
+		<integer>659460603</integer>
+	</dict>
+	<key>com.apple.iPhoto</key>
+	<dict>
+		<key>apple-id</key>
+		<string>techsupport@southamptontownny.gov</string>
+		<key>dsid</key>
+		<integer>659460603</integer>
+	</dict>
+	<key>eligibilityRead</key>
+	<dict>
+		<key>errorMessage</key>
+		<string>ex.name (com.apple.jingle.foundation.exceptions.MZCodedException) -- ex.message (MZException code = MZFinance.AppAdoptionNotEligible, userInfo = null)</string>
+		<key>errorMessageKey</key>
+		<string>MZFinance.AppAdoptionNotEligible</string>
+		<key>errorNumber</key>
+		<integer>3552</integer>
+		<key>status</key>
+		<integer>-1</integer>
+		<key>userPresentableErrorMessage</key>
+		<string>Future updates of these apps can be found through Software Update.</string>
+	</dict>
+	<key>eligiblityReadDate</key>
+	<date>2016-07-12T19:34:02Z</date>
+</dict>
+</plist>
