@@ -24,9 +24,9 @@ import UIKit
 import MapKit
 import ArcGIS
 
-class ServiceDetailViewController: UIViewController {
+class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
   
-  @IBOutlet var mapView: MKMapView!
+  @IBOutlet var mapView: AGSMapView!
   @IBOutlet var nameField: UILabel!
   @IBOutlet var addressField: UILabel!
   @IBOutlet var telField: UILabel!
@@ -45,18 +45,18 @@ class ServiceDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let initialLocation = CLLocation(latitude: 40.887464, longitude: -72.385619)
-
-    centerMapOnLocation(initialLocation)
+    //Add a basemap tiled layer
+    let url = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
+    let tiledLayer = AGSTiledMapServiceLayer(URL: url)
+    self.mapView.addMapLayer(tiledLayer, withName: "Basemap Tiled Layer")
 
   }
   
-  func centerMapOnLocation(location: CLLocation) {
-    let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-                                                              regionRadius * 2.0, regionRadius * 2.0)
-    mapView.setRegion(coordinateRegion, animated: true)
-  }
-  
+    func mapViewDidLoad(mapView: AGSMapView!) {
+        self.mapView.locationDisplay.startDataSource()
+    }
+    
+    
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     
