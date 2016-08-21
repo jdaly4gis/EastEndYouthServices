@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let facilityStore = FacilityStore()
         
         let navController = window!.rootViewController as! UINavigationController
-        let servicesListViewController = navController.topViewController as! ServiceListViewController
-        servicesListViewController.facilityStore = facilityStore
+        let serviceListViewController = navController.topViewController as! ServiceListViewController
+        serviceListViewController.facilityStore = facilityStore
         
         return true
     }

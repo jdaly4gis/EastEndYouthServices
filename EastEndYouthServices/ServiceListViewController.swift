@@ -41,7 +41,7 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     locationManager.startUpdatingLocation()
  
     tableView.rowHeight = UITableViewAutomaticDimension
-    tableView.estimatedRowHeight = 110
+    tableView.estimatedRowHeight = 65
     
     // Start network activity indicator
     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -74,21 +74,22 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCellWithIdentifier("ServiceCell", forIndexPath: indexPath) as! ServiceCell
     
     let facility = allItems[indexPath.row]
 
+
     if let x = Double(facility.Lon!),
-      y = Double(facility.Lat!) {
-
-      let facLocation = CLLocation(latitude: y, longitude: x)
-
-      let distanceBetween: CLLocationDistance = facLocation.distanceFromLocation(self.currLocation!)
-      cell.textLabel?.text = facility.F_Name
-      cell.detailTextLabel?.text = String(format: "%.1f", distanceBetween/1609.344) + " miles"
+      y = Double(facility.Lat!),
+      origin = self.currLocation
+      {
+        let facLocation = CLLocation(latitude: y, longitude: x)
+        let distanceBetween: CLLocationDistance = facLocation.distanceFromLocation(origin)
+        cell.distanceView?.text = String(format: "%.1f", distanceBetween/1609.344) + " miles"
+        cell.titleView?.text = facility.F_Name
     } else  {
-      cell.textLabel?.text = "N/A"
-      cell.detailTextLabel?.text = "N/A"
+        cell.titleView?.text = "N/A"
+        cell.distanceView?.text = "N/A"
     }
 
     return cell

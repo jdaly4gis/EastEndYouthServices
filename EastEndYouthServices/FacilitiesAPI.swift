@@ -20,7 +20,6 @@ enum FacilitiesError: ErrorType {
 struct FacilitiesAPI  {
     
     private static let baseURLString = "http://dev.southamptontownny.gov/getyouthservicesjson.ashx"
-    //    private static let baseURLString = "http://www.funktheweb.com/subways.json"
     
     private static let dateFormatter: NSDateFormatter =  {
         let formatter = NSDateFormatter()
@@ -99,10 +98,10 @@ struct FacilitiesAPI  {
     }
     
     
-    
     static func facilitiesFromJSONData(data: NSData) -> FacilitiesResult  {
         
         do {
+//            let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [NSJSONReadingOptions.AllowFragments])
             let jsonObject: AnyObject = try NSJSONSerialization.JSONObjectWithData(data, options: [])
             
             guard let jsonDictionary = jsonObject as? [NSObject:AnyObject],

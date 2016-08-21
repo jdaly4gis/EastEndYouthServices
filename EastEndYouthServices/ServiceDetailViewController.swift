@@ -26,6 +26,9 @@ import ArcGIS
 
 class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
   
+  let kBasemapLayerName = "Basemap Tiled Layer"
+    
+    
   @IBOutlet var mapView: AGSMapView!
   @IBOutlet var nameField: UILabel!
   @IBOutlet var addressField: UILabel!
@@ -33,23 +36,37 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
   @IBOutlet var descriptionField: UILabel!
   @IBOutlet var websiteField: UILabel!
   @IBOutlet var feeField: UILabel!
+
   
    let regionRadius: CLLocationDistance = 1000
+   var lat: Double?
+   var lon: Double?
   
   var facility: Facility! {
     didSet {
       navigationItem.title = facility.F_Name
+      self.lat = Double(facility.Lat!)
+      self.lon = Double(facility.Lon!)
     }
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    
+    self.mapView.enableWrapAround()
+    
+    if self.mapView.wrapAroundStatus() == .Unsupported  {
+        print("Wrap around is not supported")
+    }
+    
     //Add a basemap tiled layer
     let url = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
     let tiledLayer = AGSTiledMapServiceLayer(URL: url)
-    self.mapView.addMapLayer(tiledLayer, withName: "Basemap Tiled Layer")
+    self.mapView.addMapLayer(tiledLayer, withName: kBasemapLayerName)
 
+    let newPoint = AGSPoint(x: self.lat!, y: self.lon!, spatialReference: self.mapView.spatialReference)
+    self.mapView.centerAtPoint(newPoint, animated: true)
   }
   
     func mapViewDidLoad(mapView: AGSMapView!) {
@@ -67,6 +84,32 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
     websiteField.text = facility.WebLink
     feeField.text = facility.Fee
   }
+    
+    @IBAction func basemapChanged(sender: UISegmentedControl) {
+        
+        var basemapURL:NSURL!
+        
+        switch sender.selectedSegmentIndex {
+        case 0:  //gray
+            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
+        case 1:  //oceans
+            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer")
+        case 2:  //nat geo
+            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer")
+        case 3:  //topo
+            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer")
+        default:  //sat
+            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer")
+        }
+        
+        //remove the existing basemap layer
+        self.mapView.removeMapLayerWithName(kBasemapLayerName)
+        
+        //add new Layer
+        let newBasemapLayer = AGSTiledMapServiceLayer(URL: basemapURL)
+        self.mapView.insertMapLayer(newBasemapLayer, withName: kBasemapLayerName, atIndex: 0);
+    }
+    
 
 }
 
