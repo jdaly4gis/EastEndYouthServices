@@ -17,7 +17,8 @@ class Facility: NSObject  {
     let Fee: String?
     let Lat: String?
     let Lon: String?
-    let DistFromCenter: Double?
+    let Category: String?
+    var DistFromCenter: Double?
     
     init(F_Name: String,
          Desc: String,
@@ -27,6 +28,7 @@ class Facility: NSObject  {
          Fee: String,
          Lat: String,
          Lon: String,
+         Category: String,
          DistFromCenter: Double
         ) {
         
@@ -38,8 +40,8 @@ class Facility: NSObject  {
         self.Fee = Fee
         self.Lat = Lat
         self.Lon = Lon
+        self.Category = Category
         self.DistFromCenter = DistFromCenter
-        
         super.init()
     }
     /*

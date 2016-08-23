@@ -12,5 +12,6 @@ class ServiceCell: UITableViewCell  {
     
     @IBOutlet var titleView: UILabel!
     @IBOutlet var distanceView: UILabel!
+    @IBOutlet var addressView: UILabel!
     
 }

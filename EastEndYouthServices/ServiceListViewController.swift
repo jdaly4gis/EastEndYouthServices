@@ -26,11 +26,29 @@ import CoreLocation
 
 class ServiceListViewController: UITableViewController, CLLocationManagerDelegate {
   
+    
   var facilityStore: FacilityStore!
   var allItems = [Facility]();
+  var filteredFacilities = [Facility]()
+   
   let locationManager = CLLocationManager()
-  
+  let searchController = UISearchController(searchResultsController:nil)
+    
+
+    
+    
   var currLocation: CLLocation?
+    
+    
+  func filteredContentForSearchText(searchText: String, scope: String = "All")  {
+
+    filteredFacilities = allItems.filter { facility in
+        let typeMatch = (scope == "All") || (facility.Address!.containsString(searchText.lowercaseString))
+        return typeMatch && facility.Category!.lowercaseString.containsString(searchText.lowercaseString)
+     }
+
+     tableView.reloadData()
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,7 +63,6 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     
     // Start network activity indicator
     UIApplication.sharedApplication().networkActivityIndicatorVisible = true
- 
     
     facilityStore.fetchFacilities()  {
       (facilitiesResult) -> Void in
@@ -53,8 +70,8 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
       switch facilitiesResult {
       case let .Success(facilities):
         NSOperationQueue.mainQueue().addOperationWithBlock {
-          self.allItems = facilities;
-//          print ("Successfully found \(facilities.count) Youth Service facilities")
+            self.allItems = self.getSortedByDistance(facilities)
+            print ("Successfully found \(facilities.count) Youth Service facilities")
         }
       case let .Failure(error):
         print ("Error fetching facilities: \(error)")
@@ -63,11 +80,22 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
       self.do_table_refresh()
       UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
+    
+    searchController.searchResultsUpdater = self
+    searchController.dimsBackgroundDuringPresentation = false
+    definesPresentationContext = true
+    tableView.tableHeaderView = searchController.searchBar
+    
+    searchController.searchBar.scopeButtonTitles = ["All", "East Hampton", "Riverhead", "Shelter Island", "Southampton", "Southold"]
+    searchController.searchBar.delegate = self
  }
-  
- 
+    
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    if searchController.active && searchController.searchBar.text != "" {
+        return filteredFacilities.count
+    }
  
     return allItems.count
  
@@ -76,21 +104,18 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("ServiceCell", forIndexPath: indexPath) as! ServiceCell
     
-    let facility = allItems[indexPath.row]
-
-
-    if let x = Double(facility.Lon!),
-      y = Double(facility.Lat!),
-      origin = self.currLocation
-      {
-        let facLocation = CLLocation(latitude: y, longitude: x)
-        let distanceBetween: CLLocationDistance = facLocation.distanceFromLocation(origin)
-        cell.distanceView?.text = String(format: "%.1f", distanceBetween/1609.344) + " miles"
-        cell.titleView?.text = facility.F_Name
-    } else  {
-        cell.titleView?.text = "N/A"
-        cell.distanceView?.text = "N/A"
+    let facility: Facility
+   
+    if searchController.active && searchController.searchBar.text != "" {
+        facility = filteredFacilities[indexPath.row]
+    } else {
+        facility = allItems[indexPath.row]
     }
+
+    cell.distanceView?.text = String(format: "%.1f", facility.DistFromCenter!) + " mile(s)"
+    cell.titleView?.text = facility.F_Name
+    cell.addressView?.text = facility.Address
+
 
     return cell
   }
@@ -99,10 +124,16 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     if segue.identifier == "ShowService"  {
       
       if let row = tableView.indexPathForSelectedRow?.row  {
+        let facilityDetail: Facility
+        
+        if searchController.active && searchController.searchBar.text != "" {
+            facilityDetail = filteredFacilities[row]
+        } else {
+            facilityDetail = allItems[row]
+        }
 
-        let facility = allItems[row]
         let detailViewController = segue.destinationViewController as! ServiceDetailViewController
-        detailViewController.facility = facility
+        detailViewController.facility = facilityDetail
       }
     }
   }
@@ -120,8 +151,32 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
   
  
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError)  {
-    print ("Errors:  " + error.localizedDescription)
-  }
+        print ("Errors:  " + error.localizedDescription)
+    }
+    
+    
+    func getSortedByDistance(facilities: [Facility]) -> [Facility] {
+
+        
+        for object in facilities  {
+            let lat = object.Lat!
+            let lon = object.Lon!
+            
+            if let x = Double(lon),
+                y = Double(lat),
+                origin = self.currLocation
+            {
+                let facLocation = CLLocation(latitude: y, longitude: x)
+                let distanceBetween: CLLocationDistance = facLocation.distanceFromLocation(origin)
+
+                object.DistFromCenter = distanceBetween/1609.344
+            }  else  {
+                object.DistFromCenter = 0
+            }
+        }
+        
+        return facilities.sort { $0.DistFromCenter < $1.DistFromCenter }
+    }
   
  
  
@@ -133,4 +188,21 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     })
   }
   
+}
+
+extension ServiceListViewController: UISearchResultsUpdating  {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filteredContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
+}
+
+extension ServiceListViewController: UISearchBarDelegate {
+    
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int)  {
+        
+        filteredContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
 }

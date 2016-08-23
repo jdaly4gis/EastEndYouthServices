@@ -52,21 +52,16 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+ 
+    // Do any additional setup after loading the view.
+    let mapUrl = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
+    let tiledLyr = AGSTiledMapServiceLayer(URL: mapUrl);
     
+    self.mapView.addMapLayer(tiledLyr, withName: kBasemapLayerName)
     
-    self.mapView.enableWrapAround()
-    
-    if self.mapView.wrapAroundStatus() == .Unsupported  {
-        print("Wrap around is not supported")
-    }
-    
-    //Add a basemap tiled layer
-    let url = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
-    let tiledLayer = AGSTiledMapServiceLayer(URL: url)
-    self.mapView.addMapLayer(tiledLayer, withName: kBasemapLayerName)
+    self.mapView.zoomToGeometry(AGSGeometryEngine.defaultGeometryEngine().projectGeometry(AGSPoint(x:self.lon!, y: self.lat!, spatialReference: AGSSpatialReference.wgs84SpatialReference()), toSpatialReference: AGSSpatialReference.webMercatorSpatialReference()), withPadding: 0, animated: true);
 
-    let newPoint = AGSPoint(x: self.lat!, y: self.lon!, spatialReference: self.mapView.spatialReference)
-    self.mapView.centerAtPoint(newPoint, animated: true)
+
   }
   
     func mapViewDidLoad(mapView: AGSMapView!) {
@@ -90,13 +85,11 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
         var basemapURL:NSURL!
         
         switch sender.selectedSegmentIndex {
-        case 0:  //gray
-            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
-        case 1:  //oceans
-            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer")
-        case 2:  //nat geo
+        case 0:  //streets
+            basemapURL = NSURL(string: "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer")
+        case 1:  //nat geo
             basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer")
-        case 3:  //topo
+        case 2:  //topo
             basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer")
         default:  //sat
             basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer")
