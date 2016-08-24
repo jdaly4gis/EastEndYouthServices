@@ -43,8 +43,9 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
   func filteredContentForSearchText(searchText: String, scope: String = "All")  {
 
     filteredFacilities = allItems.filter { facility in
-        let typeMatch = (scope == "All") || (facility.Address!.containsString(searchText.lowercaseString))
-        return typeMatch && facility.Category!.lowercaseString.containsString(searchText.lowercaseString)
+        let typeMatch = (scope == "All") || (facility.Hamlet! == scope)
+        print (typeMatch, scope, facility.Hamlet!, searchText.lowercaseString)
+        return typeMatch && facility.Address!.lowercaseString.containsString(searchText.lowercaseString)
      }
 
      tableView.reloadData()
@@ -202,7 +203,7 @@ extension ServiceListViewController: UISearchResultsUpdating  {
 extension ServiceListViewController: UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int)  {
-        
+
         filteredContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }

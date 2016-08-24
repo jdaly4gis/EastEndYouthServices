@@ -18,6 +18,7 @@ class Facility: NSObject  {
     let Lat: String?
     let Lon: String?
     let Category: String?
+    let Hamlet: String?
     var DistFromCenter: Double?
     
     init(F_Name: String,
@@ -29,6 +30,7 @@ class Facility: NSObject  {
          Lat: String,
          Lon: String,
          Category: String,
+         Hamlet: String,
          DistFromCenter: Double
         ) {
         
@@ -41,6 +43,7 @@ class Facility: NSObject  {
         self.Lat = Lat
         self.Lon = Lon
         self.Category = Category
+        self.Hamlet = Hamlet
         self.DistFromCenter = DistFromCenter
         super.init()
     }

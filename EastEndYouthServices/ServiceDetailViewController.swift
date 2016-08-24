@@ -24,9 +24,14 @@ import UIKit
 import MapKit
 import ArcGIS
 
-class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
+
+class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate, AGSCalloutDelegate {
   
   let kBasemapLayerName = "Basemap Tiled Layer"
+  var graphicsOverlay:AGSGraphicsLayer!
+  var facilityPoint: AGSPoint!
+  var currentStopGraphic:AGSStopGraphic!
+
     
     
   @IBOutlet var mapView: AGSMapView!
@@ -58,11 +63,18 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
     let tiledLyr = AGSTiledMapServiceLayer(URL: mapUrl);
     
     self.mapView.addMapLayer(tiledLyr, withName: kBasemapLayerName)
+    self.graphicsOverlay = AGSGraphicsLayer()
+    self.mapView.addMapLayer(graphicsOverlay, withName:"Graphics Layer")
     
-    self.mapView.zoomToGeometry(AGSGeometryEngine.defaultGeometryEngine().projectGeometry(AGSPoint(x:self.lon!, y: self.lat!, spatialReference: AGSSpatialReference.wgs84SpatialReference()), toSpatialReference: AGSSpatialReference.webMercatorSpatialReference()), withPadding: 0, animated: true);
+    facilityPoint = AGSGeometryEngine.defaultGeometryEngine().projectGeometry(AGSPoint(x:self.lon!, y: self.lat!, spatialReference: AGSSpatialReference.wgs84SpatialReference()), toSpatialReference: AGSSpatialReference.webMercatorSpatialReference()) as! AGSPoint
 
-
-  }
+        print (facilityPoint.x, facilityPoint.y)
+    self.mapView.zoomToGeometry(facilityPoint, withPadding: 0, animated: true);
+    self.createSampleGraphics(facilityPoint.x, lon: facilityPoint.y)
+    self.mapView.callout.delegate = self
+//    self.addStop(facilityPoint)
+//    self.addStop(AGSPoint(x:self.lon!, y: self.lat!, spatialReference: AGSSpatialReference.wgs84SpatialReference())
+    }
   
     func mapViewDidLoad(mapView: AGSMapView!) {
         self.mapView.locationDisplay.startDataSource()
@@ -103,7 +115,103 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate {
         self.mapView.insertMapLayer(newBasemapLayer, withName: kBasemapLayerName, atIndex: 0);
     }
     
+    
+    func addStop(geometry:AGSPoint) -> AGSGraphic {
+        
+        //grab the geometry, then clear the sketch
+        //Prepare symbol and attributes for the Stop/Barrier
 
+        let symbol = self.stopSymbolWithNumber(1)
+
+        let facSymbol = AGSGraphic(geometry: geometry, symbol:symbol, attributes:nil)
+        
+        //You can set additional properties on the stop here
+        //refer to the conceptual helf for Routing task
+        self.graphicsOverlay.addGraphic(facSymbol)
+        return facSymbol
+    }
+    
+    func stopSymbolWithNumber(stopNumber:UInt) -> AGSCompositeSymbol {
+        let cs = AGSCompositeSymbol()
+        
+        // create outline
+        let sls = AGSSimpleLineSymbol()
+        sls.color = UIColor.blackColor()
+        sls.width = 2
+        sls.style = .Solid
+        
+        // create main circle
+        let sms = AGSSimpleMarkerSymbol()
+        sms.color = UIColor.greenColor()
+        sms.outline = sls
+        sms.size = CGSizeMake(20, 20)
+        sms.style = .Circle
+        cs.addSymbol(sms)
+        
+        //    // add number as a text symbol
+        let ts = AGSTextSymbol(text: "\(stopNumber)", color: UIColor.blackColor())
+        ts.vAlignment = .Middle
+        ts.hAlignment = .Center
+        ts.fontSize	= 16
+        cs.addSymbol(ts)
+        
+        return cs
+    }
+    
+    func createSampleGraphics(lat: Double, lon: Double) {
+
+        
+        let facilitySymbol = AGSSimpleMarkerSymbol()
+        facilitySymbol.color = UIColor.yellowColor()
+        facilitySymbol.size = CGSize(width:30, height:30)
+        facilitySymbol.style = .Cross
+        facilitySymbol.outline.color = UIColor.orangeColor()
+        facilitySymbol.outline.width = 2
+        
+ 
+        let facilityPoint = AGSPoint(x: lat, y:lon, spatialReference: self.mapView.spatialReference)
+ 
+        let facGraphic = AGSGraphic(geometry: facilityPoint, symbol: facilitySymbol, attributes: nil)
+
+        self.graphicsOverlay.addGraphic(facGraphic)
+
+    }
+    
+    func callout(callout: AGSCallout!, willShowForFeature feature: AGSFeature!, layer: AGSLayer!, mapPoint: AGSPoint!) -> Bool {
+
+        let frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        //clear the custom view.
+        self.mapView.callout.customView = nil
+       
+        self.mapView.callout.frame = frame
+
+        self.mapView.callout.autoAdjustWidth = true
+        self.mapView.callout.width = 450
+
+        self.mapView.callout.titleColor = UIColor.blueColor()
+        self.mapView.callout.borderWidth = 2
+        self.mapView.callout.borderColor = UIColor.cyanColor()
+        self.mapView.callout.title = facility.F_Name
+        self.mapView.callout.detail = facility.Address
+        
+        //hide the accessory view and also the left image view.
+        self.mapView.callout.accessoryButtonHidden = true
+        self.mapView.callout.image = nil
+        
+        return true
+    }
+    
+
+    func callout(callout: AGSCallout!, willShowForLocationDisplay locationDisplay: AGSLocationDisplay!) -> Bool {
+        var foo = "bar"
+    return true
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }
 
 

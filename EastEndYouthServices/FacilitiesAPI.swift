@@ -40,6 +40,7 @@ struct FacilitiesAPI  {
             lat = json["Lat"] as? String,
             lon = json["Lon"] as? String,
             cat = json["category"] as? String,
+            hamlet = json["AddressLine3"] as? String,
 
             description = json["Desc"] as? String else {
                 return nil
@@ -83,7 +84,7 @@ struct FacilitiesAPI  {
          Phone2xt: phone2ext, Title: title, Phone1: phone1, Township:township, DistFromCenter: distFromCenter)
          */
         
-        return Facility(F_Name:name, Desc:description,  Address:addr, Telephone: phone, WebLink: url, Fee: fee, Lat: lat, Lon: lon, Category: cat, DistFromCenter: 0.0)
+        return Facility(F_Name:name, Desc:description,  Address:addr, Telephone: phone, WebLink: url, Fee: fee, Lat: lat, Lon: lon, Category: cat, Hamlet: hamlet, DistFromCenter: 0.0)
     }
     
     
