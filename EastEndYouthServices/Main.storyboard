@@ -25,8 +25,8 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jN9-8e-708">
                                             <rect key="frame" x="40" y="8" width="368" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="8bd-da-gTo"/>
-                                                <constraint firstAttribute="width" constant="368" id="K6X-gf-RT5"/>
+                                                <constraint firstAttribute="height" constant="20" id="7h4-GA-5Wn"/>
+                                                <constraint firstAttribute="width" constant="368" id="cLR-yD-0h6"/>
                                             </constraints>
                                             <attributedString key="attributedText">
                                                 <fragment content="Label">
@@ -39,10 +39,10 @@
                                             </attributedString>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK1-Qe-gBX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dK1-Qe-gBX">
                                             <rect key="frame" x="40" y="36" width="376" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="miz-vP-DeE"/>
+                                                <constraint firstAttribute="height" constant="21" id="Wtd-c8-gRJ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,24 +51,31 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBj-oJ-sDN">
                                             <rect key="frame" x="450" y="29" width="103" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="103" id="DNF-gu-Q8o"/>
+                                                <constraint firstAttribute="width" constant="103" id="ld2-FB-xVM"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETS-2S-k4k">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ETS-2S-k4k">
                                             <rect key="frame" x="40" y="72" width="78" height="29"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="78" id="KJF-lx-Cv1"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="dK1-Qe-gBX" firstAttribute="leading" secondItem="jN9-8e-708" secondAttribute="leading" id="0Cs-KB-mQ3"/>
-                                        <constraint firstItem="jN9-8e-708" firstAttribute="top" secondItem="Vja-8l-MIm" secondAttribute="topMargin" id="DFJ-LN-PGu"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="aBj-oJ-sDN" secondAttribute="bottom" constant="50" id="IWZ-bp-kew"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="aBj-oJ-sDN" secondAttribute="trailing" constant="6" id="RDn-e3-sYR"/>
-                                        <constraint firstItem="aBj-oJ-sDN" firstAttribute="top" secondItem="Vja-8l-MIm" secondAttribute="topMargin" constant="21" id="hIx-vX-8nG"/>
-                                        <constraint firstItem="jN9-8e-708" firstAttribute="leading" secondItem="Vja-8l-MIm" secondAttribute="leadingMargin" constant="32" id="kia-tg-SM1"/>
-                                        <constraint firstItem="aBj-oJ-sDN" firstAttribute="leading" secondItem="dK1-Qe-gBX" secondAttribute="trailing" constant="34" id="nKg-4I-5I0"/>
+                                        <constraint firstItem="dK1-Qe-gBX" firstAttribute="leading" secondItem="ETS-2S-k4k" secondAttribute="leading" id="6Cb-Fd-9Ou"/>
+                                        <constraint firstItem="ETS-2S-k4k" firstAttribute="top" secondItem="dK1-Qe-gBX" secondAttribute="bottom" constant="15" id="8Ik-Sa-2HB"/>
+                                        <constraint firstItem="jN9-8e-708" firstAttribute="top" secondItem="Vja-8l-MIm" secondAttribute="topMargin" id="CgE-z4-04n"/>
+                                        <constraint firstItem="aBj-oJ-sDN" firstAttribute="leading" secondItem="dK1-Qe-gBX" secondAttribute="trailing" constant="34" id="Ebs-wb-ANN"/>
+                                        <constraint firstItem="ETS-2S-k4k" firstAttribute="bottom" secondItem="Vja-8l-MIm" secondAttribute="bottomMargin" id="Q4E-eh-lrx"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="aBj-oJ-sDN" secondAttribute="bottom" constant="50" id="XXS-DJ-YEa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="aBj-oJ-sDN" secondAttribute="trailing" constant="6" id="Xlw-I9-ODF"/>
+                                        <constraint firstItem="aBj-oJ-sDN" firstAttribute="top" secondItem="Vja-8l-MIm" secondAttribute="topMargin" constant="21" id="ijQ-ri-lS3"/>
+                                        <constraint firstItem="dK1-Qe-gBX" firstAttribute="top" secondItem="jN9-8e-708" secondAttribute="bottom" constant="8" symbolic="YES" id="r05-8U-kM4"/>
+                                        <constraint firstItem="jN9-8e-708" firstAttribute="leading" secondItem="dK1-Qe-gBX" secondAttribute="leading" id="rw4-1o-5Fd"/>
+                                        <constraint firstItem="jN9-8e-708" firstAttribute="leading" secondItem="Vja-8l-MIm" secondAttribute="leadingMargin" constant="32" id="vvQ-ap-PSB"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

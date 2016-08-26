@@ -179,16 +179,20 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate, AGS
     
     func callout(callout: AGSCallout!, willShowForFeature feature: AGSFeature!, layer: AGSLayer!, mapPoint: AGSPoint!) -> Bool {
 
+
+        self.mapView.callout.customView = FacilityDetails(frame: CGRect(x: 200, y: 200, width: 200, height: 200), facility: facility)
+        self.mapView.callout.title = "Title"
+        /*
         let frame = CGRect(x: 0, y: 0, width: 400, height: 400)
         //clear the custom view.
-        self.mapView.callout.customView = nil
+        
        
         self.mapView.callout.frame = frame
 
         self.mapView.callout.autoAdjustWidth = true
         self.mapView.callout.width = 450
 
-        self.mapView.callout.titleColor = UIColor.blueColor()
+        self.mapView.callout.titleColor = UIColor.brownColor()
         self.mapView.callout.borderWidth = 2
         self.mapView.callout.borderColor = UIColor.cyanColor()
         self.mapView.callout.title = facility.F_Name
@@ -197,13 +201,13 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate, AGS
         //hide the accessory view and also the left image view.
         self.mapView.callout.accessoryButtonHidden = true
         self.mapView.callout.image = nil
-        
+        */
         return true
     }
     
 
     func callout(callout: AGSCallout!, willShowForLocationDisplay locationDisplay: AGSLocationDisplay!) -> Bool {
-        var foo = "bar"
+
     return true
     }
     

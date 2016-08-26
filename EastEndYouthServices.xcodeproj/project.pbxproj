@@ -17,6 +17,7 @@
 		0C4C5FC31D65EFAF0091F400 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */; };
 		0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2131D65F90800AAE6BD /* Main.storyboard */; };
 		0C78C2181D66386800AAE6BD /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2171D66386800AAE6BD /* ArcGIS.bundle */; };
+		0CDB71B11D6F2BE9007A03F6 /* FacilityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB71B01D6F2BE9007A03F6 /* FacilityDetails.swift */; };
 		604F6B701D6A292800397590 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604F6B6F1D6A292800397590 /* ServiceCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		0C78C2131D65F90800AAE6BD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0C78C2151D66066C00AAE6BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C78C2171D66386800AAE6BD /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ArcGIS.bundle; sourceTree = "<group>"; };
+		0CDB71B01D6F2BE9007A03F6 /* FacilityDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilityDetails.swift; sourceTree = "<group>"; };
 		604F6B6F1D6A292800397590 /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +104,7 @@
 			children = (
 				0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */,
 				0C4C5FC01D65EFAF0091F400 /* ServiceDetailViewController.swift */,
+				0CDB71B01D6F2BE9007A03F6 /* FacilityDetails.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				0C4C5FB61D65EDF30091F400 /* FacilitiesAPI.swift in Sources */,
 				0C4C5FB81D65EE1F0091F400 /* Facility.swift in Sources */,
 				0C4C5FBF1D65EF770091F400 /* FacilityStore.swift in Sources */,
+				0CDB71B11D6F2BE9007A03F6 /* FacilityDetails.swift in Sources */,
 				604F6B701D6A292800397590 /* ServiceCell.swift in Sources */,
 				0C4C5FA41D65ED530091F400 /* AppDelegate.swift in Sources */,
 				0C4C5FC31D65EFAF0091F400 /* ServiceListViewController.swift in Sources */,

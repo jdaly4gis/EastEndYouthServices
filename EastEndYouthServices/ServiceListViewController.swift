@@ -207,3 +207,35 @@ extension ServiceListViewController: UISearchBarDelegate {
         filteredContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }
+
+
+
+protocol KeyboardDelegate {
+    func keyWasTapped(character: String)
+}
+
+class Keyboard: UIView {
+    
+    var delegate: KeyboardDelegate?
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initializeSubviews()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initializeSubviews()
+    }
+    
+    func initializeSubviews() {
+        let view = NSBundle.mainBundle().loadNibNamed("Keyboard", owner: self, options: nil)[0] as! UIView
+        self.addSubview(view)
+        view.frame = self.bounds
+    }
+    
+    @IBAction func keyTapped(sender: UIButton) {
+        self.delegate?.keyWasTapped(sender.titleLabel!.text!)
+    }
+    
+}
