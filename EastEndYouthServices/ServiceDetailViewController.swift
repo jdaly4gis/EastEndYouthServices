@@ -23,18 +23,18 @@
 import UIKit
 import MapKit
 import ArcGIS
+import GoogleMaps
 
-
-class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate, AGSCalloutDelegate {
+class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
   
   let kBasemapLayerName = "Basemap Tiled Layer"
   var graphicsOverlay:AGSGraphicsLayer!
   var facilityPoint: AGSPoint!
   var currentStopGraphic:AGSStopGraphic!
-
     
-    
-  @IBOutlet var mapView: AGSMapView!
+    var london: GMSMarker?
+    var londonView: UIImageView?
+  @IBOutlet var mapView: GMSMapView!
   @IBOutlet var nameField: UILabel!
   @IBOutlet var addressField: UILabel!
   @IBOutlet var telField: UILabel!
@@ -52,170 +52,60 @@ class ServiceDetailViewController: UIViewController,AGSMapViewLayerDelegate, AGS
       navigationItem.title = facility.F_Name
       self.lat = Double(facility.Lat!)
       self.lon = Double(facility.Lon!)
-    }
-  }
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
- 
-    // Do any additional setup after loading the view.
-    let mapUrl = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer")
-    let tiledLyr = AGSTiledMapServiceLayer(URL: mapUrl);
-    
-    self.mapView.addMapLayer(tiledLyr, withName: kBasemapLayerName)
-    self.graphicsOverlay = AGSGraphicsLayer()
-    self.mapView.addMapLayer(graphicsOverlay, withName:"Graphics Layer")
-    
-    facilityPoint = AGSGeometryEngine.defaultGeometryEngine().projectGeometry(AGSPoint(x:self.lon!, y: self.lat!, spatialReference: AGSSpatialReference.wgs84SpatialReference()), toSpatialReference: AGSSpatialReference.webMercatorSpatialReference()) as! AGSPoint
 
-        print (facilityPoint.x, facilityPoint.y)
-    self.mapView.zoomToGeometry(facilityPoint, withPadding: 0, animated: true);
-    self.createSampleGraphics(facilityPoint.x, lon: facilityPoint.y)
-    self.mapView.callout.delegate = self
-//    self.addStop(facilityPoint)
-//    self.addStop(AGSPoint(x:self.lon!, y: self.lat!, spatialReference: AGSSpatialReference.wgs84SpatialReference())
     }
+  }
   
-    func mapViewDidLoad(mapView: AGSMapView!) {
-        self.mapView.locationDisplay.startDataSource()
-    }
+ 
+  override func loadView() {
+
+ 
+      let info = facility.Address! + "\n" + "Fee: " + facility.Fee! + "\n" + facility.Telephone!
+      let camera = GMSCameraPosition.cameraWithLatitude(self.lat!, longitude: self.lon!, zoom: 14.0)
+      let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: camera)
+      mapView.myLocationEnabled = true
+      mapView.mapType = kGMSTypeNormal
+      mapView.myLocationEnabled = true
+      view = mapView
+        
+      // Creates a marker in the center of the map.
+      let marker = GMSMarker()
+      marker.position = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.lon!)
+      marker.title = facility.F_Name!
+      marker.snippet = info
+      marker.map = mapView
+ 
     
-    
-  override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    
-    nameField.text = facility.F_Name
-    addressField.text = facility.Address
-    telField.text = facility.Telephone
-//    descriptionField.text = facility.Desc
-    websiteField.text = facility.WebLink
-    feeField.text = facility.Fee
   }
     
-    @IBAction func basemapChanged(sender: UISegmentedControl) {
+    @IBAction func changeMapType(sender: AnyObject) {
+        let actionSheet = UIAlertController(title: "Map Types", message: "Select map type:", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        var basemapURL:NSURL!
-        
-        switch sender.selectedSegmentIndex {
-        case 0:  //streets
-            basemapURL = NSURL(string: "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer")
-        case 1:  //nat geo
-            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer")
-        case 2:  //topo
-            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer")
-        default:  //sat
-            basemapURL = NSURL(string: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer")
+        let normalMapTypeAction = UIAlertAction(title: "Normal", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+            self.mapView.mapType = kGMSTypeNormal
         }
         
-        //remove the existing basemap layer
-        self.mapView.removeMapLayerWithName(kBasemapLayerName)
+        let terrainMapTypeAction = UIAlertAction(title: "Terrain", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+            self.mapView.mapType = kGMSTypeTerrain
+        }
         
-        //add new Layer
-        let newBasemapLayer = AGSTiledMapServiceLayer(URL: basemapURL)
-        self.mapView.insertMapLayer(newBasemapLayer, withName: kBasemapLayerName, atIndex: 0);
-    }
-    
-    
-    func addStop(geometry:AGSPoint) -> AGSGraphic {
+        let hybridMapTypeAction = UIAlertAction(title: "Hybrid", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
+            self.mapView.mapType = kGMSTypeHybrid
+        }
         
-        //grab the geometry, then clear the sketch
-        //Prepare symbol and attributes for the Stop/Barrier
-
-        let symbol = self.stopSymbolWithNumber(1)
-
-        let facSymbol = AGSGraphic(geometry: geometry, symbol:symbol, attributes:nil)
+        let cancelAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in
+            
+        }
         
-        //You can set additional properties on the stop here
-        //refer to the conceptual helf for Routing task
-        self.graphicsOverlay.addGraphic(facSymbol)
-        return facSymbol
-    }
-    
-    func stopSymbolWithNumber(stopNumber:UInt) -> AGSCompositeSymbol {
-        let cs = AGSCompositeSymbol()
+        actionSheet.addAction(normalMapTypeAction)
+        actionSheet.addAction(terrainMapTypeAction)
+        actionSheet.addAction(hybridMapTypeAction)
+        actionSheet.addAction(cancelAction)
         
-        // create outline
-        let sls = AGSSimpleLineSymbol()
-        sls.color = UIColor.blackColor()
-        sls.width = 2
-        sls.style = .Solid
-        
-        // create main circle
-        let sms = AGSSimpleMarkerSymbol()
-        sms.color = UIColor.greenColor()
-        sms.outline = sls
-        sms.size = CGSizeMake(20, 20)
-        sms.style = .Circle
-        cs.addSymbol(sms)
-        
-        //    // add number as a text symbol
-        let ts = AGSTextSymbol(text: "\(stopNumber)", color: UIColor.blackColor())
-        ts.vAlignment = .Middle
-        ts.hAlignment = .Center
-        ts.fontSize	= 16
-        cs.addSymbol(ts)
-        
-        return cs
-    }
-    
-    func createSampleGraphics(lat: Double, lon: Double) {
-
-        
-        let facilitySymbol = AGSSimpleMarkerSymbol()
-        facilitySymbol.color = UIColor.yellowColor()
-        facilitySymbol.size = CGSize(width:30, height:30)
-        facilitySymbol.style = .Cross
-        facilitySymbol.outline.color = UIColor.orangeColor()
-        facilitySymbol.outline.width = 2
-        
- 
-        let facilityPoint = AGSPoint(x: lat, y:lon, spatialReference: self.mapView.spatialReference)
- 
-        let facGraphic = AGSGraphic(geometry: facilityPoint, symbol: facilitySymbol, attributes: nil)
-
-        self.graphicsOverlay.addGraphic(facGraphic)
-
-    }
-    
-    func callout(callout: AGSCallout!, willShowForFeature feature: AGSFeature!, layer: AGSLayer!, mapPoint: AGSPoint!) -> Bool {
-
-
-        self.mapView.callout.customView = FacilityDetails(frame: CGRect(x: 200, y: 200, width: 200, height: 200), facility: facility)
-        self.mapView.callout.title = "Title"
-        /*
-        let frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-        //clear the custom view.
-        
-       
-        self.mapView.callout.frame = frame
-
-        self.mapView.callout.autoAdjustWidth = true
-        self.mapView.callout.width = 450
-
-        self.mapView.callout.titleColor = UIColor.brownColor()
-        self.mapView.callout.borderWidth = 2
-        self.mapView.callout.borderColor = UIColor.cyanColor()
-        self.mapView.callout.title = facility.F_Name
-        self.mapView.callout.detail = facility.Address
-        
-        //hide the accessory view and also the left image view.
-        self.mapView.callout.accessoryButtonHidden = true
-        self.mapView.callout.image = nil
-        */
-        return true
-    }
-    
-
-    func callout(callout: AGSCallout!, willShowForLocationDisplay locationDisplay: AGSLocationDisplay!) -> Bool {
-
-    return true
-    }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        presentViewController(actionSheet, animated: true, completion: nil)
     }
 }
+
+
 
 
