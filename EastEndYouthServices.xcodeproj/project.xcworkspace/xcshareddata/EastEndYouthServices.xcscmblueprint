@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "CE5203F514EA001D7041E769CEC7F10AAE392737",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CE5203F514EA001D7041E769CEC7F10AAE392737" : 0,
+    "1292A0F6EB8C466B75FF3EE1390B92401DEDF722" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9BE06BA2-1CDB-4D82-9B20-61F8235207BC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CE5203F514EA001D7041E769CEC7F10AAE392737" : "EastEndYouthServices\/",
+    "1292A0F6EB8C466B75FF3EE1390B92401DEDF722" : "PopupDialog\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EastEndYouthServices",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EastEndYouthServices.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jdaly4gis\/PopupDialog",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1292A0F6EB8C466B75FF3EE1390B92401DEDF722"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jdaly4gis\/EastEndYouthServices.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CE5203F514EA001D7041E769CEC7F10AAE392737"
+    }
+  ]
+}

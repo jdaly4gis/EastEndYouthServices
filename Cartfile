@@ -1,0 +1,4 @@
+github "tomvanzummeren/TZStackView" ~> 1.2.0
+github "Orderella/PopupDialog" ~> 0.4
+
+

@@ -13,5 +13,10 @@ class ServiceCell: UITableViewCell  {
     @IBOutlet var titleView: UILabel!
     @IBOutlet var distanceView: UILabel!
     @IBOutlet var addressView: UILabel!
+
+    @IBOutlet var launchBrowserIcon: UIImageView!
+    @IBOutlet var launchDirectionsIcon: UIImageView!
+    @IBOutlet var launchEmailIcon: UIImageView!
+    @IBOutlet var launchTelIcon: UIImageView!
     
 }

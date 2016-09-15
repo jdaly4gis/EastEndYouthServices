@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ArcGIS
+
 
 
 class FacilityDetails: UIView {

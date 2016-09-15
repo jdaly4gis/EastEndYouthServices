@@ -33,10 +33,32 @@
 		0C4C5FC31D65EFAF0091F400 /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */; };
 		0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C78C2131D65F90800AAE6BD /* Main.storyboard */; };
 		0C7ADE551D75E43C000036E7 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C7ADE541D75E43C000036E7 /* GoogleMaps.bundle */; };
-		0C7ADE571D760731000036E7 /* ServiceBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7ADE561D760731000036E7 /* ServiceBack.swift */; };
+		0C8E750D1D88948C008AA187 /* TZStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E750C1D88948C008AA187 /* TZStackView.framework */; };
+		0C8E750E1D88948C008AA187 /* TZStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E750C1D88948C008AA187 /* TZStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C8E75321D8988BC008AA187 /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E75301D8988AB008AA187 /* PopupDialog.framework */; };
+		0C8E75371D8989E2008AA187 /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E75361D8989E2008AA187 /* PopupDialog.framework */; };
+		0C8E75381D8989E9008AA187 /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E75361D8989E2008AA187 /* PopupDialog.framework */; };
+		0C8E75391D8989E9008AA187 /* PopupDialog.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0C8E75361D8989E2008AA187 /* PopupDialog.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C8E753B1D89A891008AA187 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8E753A1D89A891008AA187 /* WebViewController.swift */; };
+		0C8E753D1D89AE3D008AA187 /* hotline.html in Resources */ = {isa = PBXBuildFile; fileRef = 0C8E753C1D89AE3D008AA187 /* hotline.html */; };
 		0CDB71B11D6F2BE9007A03F6 /* FacilityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDB71B01D6F2BE9007A03F6 /* FacilityDetails.swift */; };
 		604F6B701D6A292800397590 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604F6B6F1D6A292800397590 /* ServiceCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0C8E750A1D889259008AA187 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0C8E750E1D88948C008AA187 /* TZStackView.framework in Embed Frameworks */,
+				0C8E75391D8989E9008AA187 /* PopupDialog.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0C09D4441D75DA43005C6602 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Subspecs/Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
@@ -68,7 +90,12 @@
 		0C78C2131D65F90800AAE6BD /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0C78C2151D66066C00AAE6BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C7ADE541D75E43C000036E7 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../../Downloads/5a212b0fa429156f-GoogleMaps-2.0.1 5/Subspecs/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
-		0C7ADE561D760731000036E7 /* ServiceBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceBack.swift; sourceTree = "<group>"; };
+		0C8E74D91D883C79008AA187 /* EastEndYouthServices-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EastEndYouthServices-Bridging-Header.h"; sourceTree = "<group>"; };
+		0C8E750C1D88948C008AA187 /* TZStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TZStackView.framework; path = Carthage/Build/iOS/TZStackView.framework; sourceTree = "<group>"; };
+		0C8E75301D8988AB008AA187 /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = /Users/southamptondev/Documents/Development/PopupDialog/Carthage/Build/iOS/PopupDialog.framework; sourceTree = "<absolute>"; };
+		0C8E75361D8989E2008AA187 /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = Carthage/Build/iOS/PopupDialog.framework; sourceTree = "<group>"; };
+		0C8E753A1D89A891008AA187 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		0C8E753C1D89AE3D008AA187 /* hotline.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = hotline.html; sourceTree = "<group>"; };
 		0CDB71B01D6F2BE9007A03F6 /* FacilityDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilityDetails.swift; sourceTree = "<group>"; };
 		604F6B6F1D6A292800397590 /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,16 +106,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C09D4671D75DD35005C6602 /* UIKit.framework in Frameworks */,
+				0C8E75381D8989E9008AA187 /* PopupDialog.framework in Frameworks */,
 				0C09D4651D75DD2B005C6602 /* SystemConfiguration.framework in Frameworks */,
 				0C09D4631D75DD1F005C6602 /* QuartzCore.framework in Frameworks */,
 				0C09D4611D75DD15005C6602 /* OpenGLES.framework in Frameworks */,
 				0C09D45F1D75DD09005C6602 /* libz.1.1.3.tbd in Frameworks */,
 				0C09D45D1D75DCF4005C6602 /* libc++.tbd in Frameworks */,
+				0C8E75371D8989E2008AA187 /* PopupDialog.framework in Frameworks */,
+				0C8E75321D8988BC008AA187 /* PopupDialog.framework in Frameworks */,
 				0C09D45B1D75DCDD005C6602 /* ImageIO.framework in Frameworks */,
 				0C09D4591D75DCD4005C6602 /* GLKit.framework in Frameworks */,
 				0C09D4571D75DCC0005C6602 /* CoreText.framework in Frameworks */,
 				0C09D4551D75DCB8005C6602 /* CoreLocation.framework in Frameworks */,
 				0C09D4531D75DCAC005C6602 /* CoreGraphics.framework in Frameworks */,
+				0C8E750D1D88948C008AA187 /* TZStackView.framework in Frameworks */,
 				0C09D4511D75DCA2005C6602 /* CoreData.framework in Frameworks */,
 				0C09D44F1D75DC96005C6602 /* Accelerate.framework in Frameworks */,
 				0C09D4471D75DA5E005C6602 /* GoogleMaps.framework in Frameworks */,
@@ -103,6 +134,8 @@
 		0558264C5537DF3E006C4A51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C8E75361D8989E2008AA187 /* PopupDialog.framework */,
+				0C8E750C1D88948C008AA187 /* TZStackView.framework */,
 				0C09D4661D75DD35005C6602 /* UIKit.framework */,
 				0C09D4641D75DD2B005C6602 /* SystemConfiguration.framework */,
 				0C09D4621D75DD1F005C6602 /* QuartzCore.framework */,
@@ -127,6 +160,8 @@
 		0C4C5F971D65ED530091F400 = {
 			isa = PBXGroup;
 			children = (
+				0C8E753C1D89AE3D008AA187 /* hotline.html */,
+				0C8E74D91D883C79008AA187 /* EastEndYouthServices-Bridging-Header.h */,
 				0C7ADE541D75E43C000036E7 /* GoogleMaps.bundle */,
 				0C4C5FA21D65ED530091F400 /* EastEndYouthServices */,
 				0C4C5FA11D65ED530091F400 /* Products */,
@@ -181,7 +216,7 @@
 				0C4C5FC11D65EFAF0091F400 /* ServiceListViewController.swift */,
 				0C4C5FC01D65EFAF0091F400 /* ServiceDetailViewController.swift */,
 				0CDB71B01D6F2BE9007A03F6 /* FacilityDetails.swift */,
-				0C7ADE561D760731000036E7 /* ServiceBack.swift */,
+				0C8E753A1D89A891008AA187 /* WebViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -196,6 +231,8 @@
 				0C4C5F9C1D65ED530091F400 /* Sources */,
 				0C4C5F9D1D65ED530091F400 /* Frameworks */,
 				0C4C5F9E1D65ED530091F400 /* Resources */,
+				0C8E750A1D889259008AA187 /* Embed Frameworks */,
+				0C8E750B1D8892CA008AA187 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -249,18 +286,37 @@
 				0C4C5FAB1D65ED530091F400 /* Assets.xcassets in Resources */,
 				0C78C2141D65F90800AAE6BD /* Main.storyboard in Resources */,
 				0C7ADE551D75E43C000036E7 /* GoogleMaps.bundle in Resources */,
+				0C8E753D1D89AE3D008AA187 /* hotline.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C8E750B1D8892CA008AA187 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/TZStackView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PopupDialog.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C4C5F9C1D65ED530091F400 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C7ADE571D760731000036E7 /* ServiceBack.swift in Sources */,
 				0C4C5FB61D65EDF30091F400 /* FacilitiesAPI.swift in Sources */,
+				0C8E753B1D89A891008AA187 /* WebViewController.swift in Sources */,
 				0C4C5FB81D65EE1F0091F400 /* Facility.swift in Sources */,
 				0C4C5FBF1D65EF770091F400 /* FacilityStore.swift in Sources */,
 				0CDB71B11D6F2BE9007A03F6 /* FacilityDetails.swift in Sources */,
@@ -306,8 +362,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -325,7 +383,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,8 +411,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -365,7 +425,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -375,30 +435,26 @@
 		0C4C5FB31D65ED530091F400 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(HOME)/Library/SDKs/ArcGIS/iOS/",
-					"$(PROJECT_DIR)/EastEndYouthServices/GoogleMaps/Subspecs/Base/Frameworks",
-					"$(PROJECT_DIR)/EastEndYouthServices/GoogleMaps/Subspecs/Maps/Frameworks",
-					"$(PROJECT_DIR)/Subspecs/Base/Frameworks",
-					"$(PROJECT_DIR)/Subspecs/Maps/Frameworks",
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = EastEndYouthServices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-					"-framework",
-					ArcGIS,
-					"-l",
-					"c++",
-				);
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC  ";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.southamptontownny.EastEndYouthServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "EastEndYouthServices-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "EastEndYouthServices-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
@@ -406,23 +462,25 @@
 		0C4C5FB41D65ED530091F400 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(HOME)/Library/SDKs/ArcGIS/iOS/",
-					"$(PROJECT_DIR)/EastEndYouthServices/GoogleMaps/Subspecs/Base/Frameworks",
-					"$(PROJECT_DIR)/EastEndYouthServices/GoogleMaps/Subspecs/Maps/Frameworks",
-					"$(PROJECT_DIR)/Subspecs/Base/Frameworks",
-					"$(PROJECT_DIR)/Subspecs/Maps/Frameworks",
+					"$(PROJECT_DIR)/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(PROJECT_DIR)/SubSpecs/Base/Frameworks/**";
 				INFOPLIST_FILE = EastEndYouthServices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = gov.southamptontownny.EastEndYouthServices;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "EastEndYouthServices-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "EastEndYouthServices-Swift.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;

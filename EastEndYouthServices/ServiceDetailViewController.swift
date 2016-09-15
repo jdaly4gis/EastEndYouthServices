@@ -22,15 +22,15 @@
 
 import UIKit
 import MapKit
-import ArcGIS
+import WebKit
 import GoogleMaps
 
 class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
   
   let kBasemapLayerName = "Basemap Tiled Layer"
-  var graphicsOverlay:AGSGraphicsLayer!
-  var facilityPoint: AGSPoint!
-  var currentStopGraphic:AGSStopGraphic!
+//  var graphicsOverlay:AGSGraphicsLayer!
+//  var facilityPoint: AGSPoint!
+//  var currentStopGraphic:AGSStopGraphic!
     
     var london: GMSMarker?
     var londonView: UIImageView?
@@ -42,7 +42,10 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
   @IBOutlet var websiteField: UILabel!
   @IBOutlet var feeField: UILabel!
 
-  
+
+        
+    
+  	
    let regionRadius: CLLocationDistance = 1000
    var lat: Double?
    var lon: Double?
@@ -56,41 +59,123 @@ class ServiceDetailViewController: UIViewController, GMSMapViewDelegate {
     }
   }
   
- 
+    /*
   override func loadView() {
 
- 
-      let info = facility.Address! + "\n" + "Fee: " + facility.Fee! + "\n" + facility.Telephone!
+
+      let info = facility.Address! + "\n" + "Fee: " + facility.Fee! + "\n" + facility.Telephone! + "\n\n"  + facility.Desc!
       let camera = GMSCameraPosition.cameraWithLatitude(self.lat!, longitude: self.lon!, zoom: 14.0)
       let mapView = GMSMapView.mapWithFrame(CGRect.zero, camera: camera)
       mapView.myLocationEnabled = true
       mapView.mapType = kGMSTypeNormal
       mapView.myLocationEnabled = true
       view = mapView
-        
+    
+    let items = ["Normal", "Terrain", "Satellite", "Hybrid"]
+    let segmentedControl = UISegmentedControl(items: items)
+    
+    segmentedControl.frame = CGRectMake(0, 70, view.bounds.width, 40)
+    segmentedControl.layer.cornerRadius = 5.0
+    segmentedControl.addTarget(self, action: #selector(ServiceDetailViewController.mapType(_:)), forControlEvents: UIControlEvents.ValueChanged)
+    view.addSubview(segmentedControl)
+
+
       // Creates a marker in the center of the map.
       let marker = GMSMarker()
+
       marker.position = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.lon!)
       marker.title = facility.F_Name!
       marker.snippet = info
       marker.map = mapView
- 
-    
   }
+*/
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        let info = facility.Address! + "\n" + "Fee: " + facility.Fee! + "\n" + facility.Telephone! + "\n\n"  + facility.Desc!
+
+        mapView = GMSMapView(frame: CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height))
+        
+        mapView.camera = GMSCameraPosition.cameraWithLatitude(self.lat!, longitude: self.lon!, zoom: 15.0)
+        
+        mapView.mapType = kGMSTypeNormal
+        mapView.myLocationEnabled = true
+        mapView.delegate = self
+        
+        view.addSubview(mapView)
+        
+        //Add a segmented control for selecting the map type.
+        let items = ["Normal", "Terrain", "Satellite", "Hybrid"]
+        let segmentedControl = UISegmentedControl(items: items)
+        segmentedControl.selectedSegmentIndex = 0
+
+        segmentedControl.frame = CGRectMake(0, 65, view.bounds.width, 50)
+        segmentedControl.layer.cornerRadius = 5.0
+        segmentedControl.addTarget(self, action: #selector(ServiceDetailViewController.mapType(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        segmentedControl.addTarget(self, action: #selector(ServiceDetailViewController.segColor(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        view.addSubview(segmentedControl)
+        
+ 
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        
+        marker.position = CLLocationCoordinate2D(latitude: self.lat!, longitude: self.lon!)
+        marker.title = facility.F_Name!
+        marker.snippet = info
+        marker.map = mapView
+        
+    }
+
+    
+    func mapType(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            mapView.mapType = kGMSTypeNormal
+        case 1:
+            mapView.mapType = kGMSTypeTerrain
+        case 2:
+            mapView.mapType = kGMSTypeSatellite
+        default:
+            mapView.mapType = kGMSTypeHybrid
+        }
+    }
+    
+    func segColor(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            sender.tintColor = UIColor.blueColor()
+            sender.backgroundColor   = UIColor.clearColor()
+        case 1:
+            sender.tintColor = UIColor.blueColor()
+            sender.backgroundColor   = UIColor.clearColor()
+        case 2:
+            sender.tintColor = UIColor.yellowColor()
+            sender.backgroundColor = UIColor.orangeColor()
+        default:
+            sender.tintColor = UIColor.yellowColor()
+            sender.backgroundColor = UIColor.orangeColor()        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
     
     @IBAction func changeMapType(sender: AnyObject) {
         let actionSheet = UIAlertController(title: "Map Types", message: "Select map type:", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
         let normalMapTypeAction = UIAlertAction(title: "Normal", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-            self.mapView.mapType = kGMSTypeNormal
+           // self.mapView.mapType = kGMSTypeNormal
         }
         
         let terrainMapTypeAction = UIAlertAction(title: "Terrain", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-            self.mapView.mapType = kGMSTypeTerrain
+            //self.mapView.mapType = kGMSTypeTerrain
         }
         
         let hybridMapTypeAction = UIAlertAction(title: "Hybrid", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
-            self.mapView.mapType = kGMSTypeHybrid
+            //self.mapView.mapType = kGMSTypeHybrid
         }
         
         let cancelAction = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel) { (alertAction) -> Void in

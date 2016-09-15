@@ -21,12 +21,13 @@
  */
 
 import UIKit
-
 import CoreLocation
+import PopupDialog
+
 
 class ServiceListViewController: UITableViewController, CLLocationManagerDelegate {
   
-    
+
   var facilityStore: FacilityStore!
   var allItems = [Facility]();
   var filteredFacilities = [Facility]()
@@ -36,9 +37,7 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     
 
     
-    
   var currLocation: CLLocation?
-    
     
   func filteredContentForSearchText(searchText: String, scope: String = "All")  {
 
@@ -53,7 +52,38 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
+    /*
+    let title = "THIS IS THE DIALOG TITLE"
+    let message = "<h1>This is the message section of the popup dialog default view</h1>"
+    let image = UIImage(named: "pexels-photo-103290")
+    
+    // Create the dialog
+    let popup = PopupDialog(title: title, message: message, image: image)
+    
+    // Create buttons
+    let buttonOne = CancelButton(title: "CANCEL") {
+        print("You canceled the car dialog.")
+    }
+    
+    let buttonTwo = DefaultButton(title: "ADMIRE CAR") {
+        print("What a beauty!")
+    }
+    
+    let buttonThree = DefaultButton(title: "BUY CAR") {
+        print("Ah, maybe next time :)")
+    }
+    
+    // Add buttons to dialog
+    // Alternatively, you can use popup.addButton(buttonOne)
+    // to add a single button
+    popup.addButton(buttonOne)
+    
+    // Present dialog
+    self.presentViewController(popup, animated: true, completion: nil)
+    
+    */
+    
     locationManager.delegate = self
     locationManager.desiredAccuracy = kCLLocationAccuracyBest // GPS
     locationManager.requestWhenInUseAuthorization()
@@ -106,6 +136,7 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     let cell = tableView.dequeueReusableCellWithIdentifier("ServiceCell", forIndexPath: indexPath) as! ServiceCell
     
     let facility: Facility
+    var tapGestureRecognizer: UITapGestureRecognizer!
    
     if searchController.active && searchController.searchBar.text != "" {
         facility = filteredFacilities[indexPath.row]
@@ -117,9 +148,142 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     cell.titleView?.text = facility.F_Name
     cell.addressView?.text = facility.Address
 
+    let browserLaunchImage = cell.launchBrowserIcon
+    
+    tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ServiceListViewController.browserLaunchImageTapped(_:)))
+    browserLaunchImage.userInteractionEnabled = true
+    browserLaunchImage.addGestureRecognizer(tapGestureRecognizer)
+    
+    let emailLaunchImage = cell.launchEmailIcon
+    tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ServiceListViewController.emailLaunchImageTapped(_:)))
+    emailLaunchImage.userInteractionEnabled = true
+    emailLaunchImage.addGestureRecognizer(tapGestureRecognizer)
+    
 
+    let phoneLaunchImage = cell.launchTelIcon
+    tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ServiceListViewController.phoneLaunchImageTapped(_:)))
+    phoneLaunchImage.userInteractionEnabled = true
+    phoneLaunchImage.addGestureRecognizer(tapGestureRecognizer)
+    
+    let directionsLaunchImage = cell.launchDirectionsIcon
+    tapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(ServiceListViewController.directionsLaunchImageTapped(_:)))
+    directionsLaunchImage.userInteractionEnabled = true
+    directionsLaunchImage.addGestureRecognizer(tapGestureRecognizer)
+    
     return cell
   }
+
+    
+    func directionsLaunchImageTapped(sender: UITapGestureRecognizer)  {
+        let touch = sender.locationInView(tableView)
+        
+        if let indexPath = tableView.indexPathForRowAtPoint(touch) {
+            let facility = allItems[indexPath.row]
+            if facility.Lat! != "" && facility.Lon! != ""{
+
+                
+                let url:NSURL = NSURL(string: "https://www.google.com/maps/dir/Current+Location/" + facility.Lat! + "," + facility.Lon!)!
+                UIApplication.sharedApplication().openURL(url)
+                
+            } else {
+                
+                let alertController = UIAlertController(title: "Coordinates Not Supplied", message: "Click OK to continue", preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+                    UIAlertAction in
+                    NSLog("OK Pressed")
+                }
+                
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }
+        }    }
+
+    func phoneLaunchImageTapped(sender: UITapGestureRecognizer)  {
+        
+        var phone: String!
+        
+        let touch = sender.locationInView(tableView)
+        if let indexPath = tableView.indexPathForRowAtPoint(touch) {
+            let facility = allItems[indexPath.row]
+            if facility.Telephone! != "" {
+
+                phone = facility.Telephone!
+                phone = phone.stringByReplacingOccurrencesOfString(" " , withString: "")
+                phone = phone.stringByReplacingOccurrencesOfString("(" , withString: "")
+                phone = phone.stringByReplacingOccurrencesOfString(")" , withString: "")
+                phone = phone.stringByReplacingOccurrencesOfString("-" , withString: "")
+
+                let url:NSURL = NSURL(string: "tel://" + phone)!
+                UIApplication.sharedApplication().openURL(url)
+                
+            } else {
+                
+                let alertController = UIAlertController(title: "Phone Number Not Supplied", message: "Click OK to continue", preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+                    UIAlertAction in
+                    NSLog("OK Pressed")
+                }
+                
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }
+        }
+    }
+
+    
+    func emailLaunchImageTapped(sender: UITapGestureRecognizer)  {
+    
+        var email: String!
+       
+        let touch = sender.locationInView(tableView)
+        if let indexPath = tableView.indexPathForRowAtPoint(touch) {
+            let facility = allItems[indexPath.row]
+            if facility.Email! != "" {
+                email = facility.WebLink!
+                
+                let url = NSURL(string: "mailto:\(email)")
+                UIApplication.sharedApplication().openURL(url!)
+                
+            } else {
+
+                let alertController = UIAlertController(title: "Email Address Not Supplied", message: "Click OK to continue", preferredStyle: .Alert)
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+                    UIAlertAction in
+                    NSLog("OK Pressed")
+                }
+
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }
+        }
+
+    }
+   
+    func browserLaunchImageTapped(sender: UITapGestureRecognizer)  {
+
+        var website: String!
+        
+        let touch = sender.locationInView(tableView)
+        if let indexPath = tableView.indexPathForRowAtPoint(touch) {
+            let facility = allItems[indexPath.row]
+            if facility.WebLink! != "" {
+                    website = facility.WebLink!
+            } else {
+                website = "http://www.southamptontownny.gov"
+            }
+        }
+        
+        if let url = NSURL(string: website) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)  {
     if segue.identifier == "ShowService"  {
@@ -189,7 +353,10 @@ class ServiceListViewController: UITableViewController, CLLocationManagerDelegat
     })
   }
   
+ 
 }
+
+ 
 
 extension ServiceListViewController: UISearchResultsUpdating  {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -210,32 +377,4 @@ extension ServiceListViewController: UISearchBarDelegate {
 
 
 
-protocol KeyboardDelegate {
-    func keyWasTapped(character: String)
-}
-
-class Keyboard: UIView {
-    
-    var delegate: KeyboardDelegate?
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initializeSubviews()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initializeSubviews()
-    }
-    
-    func initializeSubviews() {
-        let view = NSBundle.mainBundle().loadNibNamed("Keyboard", owner: self, options: nil)[0] as! UIView
-        self.addSubview(view)
-        view.frame = self.bounds
-    }
-    
-    @IBAction func keyTapped(sender: UIButton) {
-        self.delegate?.keyWasTapped(sender.titleLabel!.text!)
-    }
-    
-}
+ 
